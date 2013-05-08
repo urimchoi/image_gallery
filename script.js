@@ -1,7 +1,8 @@
-// Change the size of the thumbnails from Small, Medium, and Large 
+
 
 $(document).ready(function() {
-	
+
+/* Change the size of the thumbnails from Small, Medium, and Large */	
 	var i = 1;
 
 	// When #smaller button is pressed, the image size decreases one level and changes the text to the respective size name
@@ -40,6 +41,7 @@ $(document).ready(function() {
 			
 	});
 
+/* Large Image Viewer */
 
 	// enables overlay when mouse is over an image
 	$('div.image').mouseenter(function() {
@@ -56,24 +58,24 @@ $(document).ready(function() {
 		// when in the large image view, clicking on the div fades away the image and returns back to the gallery view
 		if ($(this).parent().parent().is('.image_xlarge'))
 		{	
-			$(this).viewLargeImage();
+			$(this).closeLargeImage();
 		}
 
 		// when in the gallery view, hides all other pictures and shows the selected image in a large size
 		else
 		{
-			$(this).closeLargeImage();
+			$(this).viewLargeImage();
 		}
 	})
 
-	jQuery.fn.viewLargeImage = function() {
+	jQuery.fn.closeLargeImage = function() {
 		$(this).parent().parent().hide().removeClass('image_xlarge');
 		$('.image').fadeIn(1000);
 		$(this).text('expand').css({top:'50%',left:'50%', width:'100px', 'border-radius':'0px'});
 		$(this).parent().css({background:'#000'});
 	}
 
-	jQuery.fn.closeLargeImage = function() {
+	jQuery.fn.viewLargeImage = function() {
 		$('.image').hide();
 		$(this).parent().parent().addClass('image_xlarge').fadeIn(1000);
 		$(this).text('X').css({top:'50px', left:'75px', width:'38px', 'border-radius':'25px'});
